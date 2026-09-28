@@ -40,13 +40,3 @@ src/
 ## Mode siang / malam
 
 Default-nya malam. Pengunjung bisa ganti lewat saklar di nav atau dengan mengklik gorden di kamar 3D. Pilihannya disimpan di `localStorage`.
-
-- **Warna UI** ada di [src/index.css](src/index.css). Pakai token semantik (`page`, `fg`, `surface`, `accent`, `accent-2`, `accent-3`, `on-accent`, `shadow`) supaya ikut berganti otomatis. Palet tetap (`lamp`, `rose`, `cream`, `paper`, `sky`) hanya untuk benda fisik, seperti kertas polaroid, yang warnanya sama siang dan malam.
-- **Parallax Bandung** memakai variabel `--bdg-*` di file yang sama. Elemen dengan class `night-only` (bintang, lampu kota) otomatis hilang di siang hari.
-- **Kamar 3D** membaca `themeMix.value` (0 = malam, 1 = siang) dari [src/three/themeMix.js](src/three/themeMix.js). Pencahayaan ada di `LIGHTING` di [src/three/Scene.jsx](src/three/Scene.jsx).
-
-Setiap section punya atribut `data-cam="..."`. Saat section itu berada di tengah layar, kamera bergerak ke shot dengan nama yang sama di `SHOTS` (`CameraRig.jsx`).
-
-## Deploy
-
-Push ke GitHub → import di [vercel.com](https://vercel.com) → Framework: **Vite** → Deploy.
