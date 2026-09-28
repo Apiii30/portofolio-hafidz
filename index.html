@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hafidz Asmar Meisanda — Full-stack Developer</title>
+    <meta name="description" content="Portfolio of Hafidz Asmar Meisanda, an Informatics Management student and full-stack web developer based in Bandung, Indonesia." />
+    <meta name="theme-color" content="#10121b" />
+    <script>
+      // Apply a saved day/night choice before first paint so the page doesn't flash.
+      try {
+        if (localStorage.getItem('theme') === 'day') {
+          document.documentElement.dataset.theme = 'day'
+          document.querySelector('meta[name="theme-color"]').content = '#f3eadb'
+        }
+      } catch (e) {}
+    </script>
+    <meta property="og:title" content="Hafidz Asmar Meisanda — Full-stack Developer" />
+    <meta property="og:description" content="Come hang out in my room. Projects, skills and experience of a full-stack developer from Bandung." />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>
