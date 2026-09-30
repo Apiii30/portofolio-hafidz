@@ -26,7 +26,17 @@ export const socials = [
 
 // Bisa ditambah: screenshot (image: '/projects/nama.png') dan proyek baru.
 // `highlight` muncul sebagai stiker di pojok kartu.
+// `repo` hanya untuk repo PUBLIK — repo privat bikin pengunjung kena 404, jadi isi null.
 export const projects = [
+  {
+    title: 'Wedding Invitation',
+    year: '2026',
+    blurb:
+      'A digital wedding invitation for a real couple. Every guest gets a personal link to RSVP and leave a wish; the couple run the guest list, WhatsApp invites and RSVPs from an admin dashboard.',
+    tags: ['Next.js', 'TypeScript', 'Tailwind', 'Supabase'],
+    live: 'https://the-wedding-of-frisca-arif.vercel.app',
+    repo: 'https://github.com/Apiii30/wedding-invitation',
+  },
   {
     title: 'PrakVote',
     year: '2025',
@@ -51,7 +61,7 @@ export const projects = [
     blurb: 'A showroom website for a (futuristic) vehicle dealer, with a catalog and contact page.',
     tags: ['HTML', 'CSS', 'JavaScript'],
     live: null,
-    repo: 'https://github.com/Apiii30/website-haspi-motors',
+    repo: null, // repo website-haspi-motors masih privat
   },
 ]
 
