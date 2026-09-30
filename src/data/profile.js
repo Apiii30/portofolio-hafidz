@@ -47,22 +47,6 @@ export const projects = [
     live: 'https://voting-web-xi.vercel.app',
     repo: 'https://github.com/Apiii30/voting-web',
   },
-  {
-    title: 'HIMAMI Website',
-    year: '2025',
-    blurb: "The official site of HIMAMI, our Informatics Management student association — profile, programs and activities. I built it, and I still look after it.",
-    tags: ['HTML', 'CSS', 'JavaScript'],
-    live: null,
-    repo: 'https://github.com/Apiii30/Web-Himami',
-  },
-  {
-    title: 'Haspi Motors',
-    year: '2026',
-    blurb: 'A showroom website for a (futuristic) vehicle dealer, with a catalog and contact page.',
-    tags: ['HTML', 'CSS', 'JavaScript'],
-    live: null,
-    repo: null, // repo website-haspi-motors masih privat
-  },
 ]
 
 // ── Rak skill 3D ─────────────────────────────────────────────

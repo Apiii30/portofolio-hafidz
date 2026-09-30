@@ -7,7 +7,7 @@ const tilts = ['-rotate-1', 'rotate-[0.8deg]', '-rotate-[0.6deg]', 'rotate-1']
 
 export default function Projects() {
   return (
-    <SceneSection id="projects" cam="monitor" label="Projects" className="min-h-[190vh]">
+    <SceneSection id="projects" cam="monitor" label="Projects" className="min-h-[160vh]">
       <Chapter n="02">Things I've built</Chapter>
       <h2 className="font-display text-[11vw] leading-[0.95] sm:text-5xl md:text-6xl" data-reveal>
         Off the{' '}
