@@ -4,7 +4,7 @@ import { RoundedBox, Text, Line, Html, useTexture } from '@react-three/drei'
 import * as THREE from 'three'
 import bowlbyFont from '@fontsource/bowlby-one/files/bowlby-one-latin-400-normal.woff?url'
 import monoFont from '@fontsource/jetbrains-mono/files/jetbrains-mono-latin-700-normal.woff?url'
-import { bookshelfRows, shelfLanguages, toolbox, experience } from '../data/profile'
+import { bookshelfRows, shelfLanguages, toolbox, experience, courses } from '../data/profile'
 import { setState, useStore } from '../lib/store'
 import { toggleTheme } from '../lib/theme'
 import { byTheme, themeMix } from './themeMix'
@@ -745,58 +745,98 @@ function Poster() {
   )
 }
 
-// The internship certificate, framed and hung next to the ocean poster. Click it to see it full size.
-const certificate = experience.find((job) => job.certificate)?.certificate
-
-function CertificateFrame() {
-  const tex = useTexture(certificate.thumb)
+// A framed certificate, built facing +z. Click it to see it full size.
+// `glowOn` lights the frame up when that skill is hovered anywhere on the page.
+function CertificateFrame({ cert, width = 0.7, color = '#c9a35a', metal = 0.35, glowOn, rosette = false, ...props }) {
+  const tex = useTexture(cert.thumb)
   tex.colorSpace = THREE.SRGBColorSpace
   const [hover, setHover] = useState(false)
+  const linked = useStore((s) => !!glowOn && s.hoveredSkill === glowOn)
+  const lit = hover || linked
   const frame = useRef()
   useFrame((_, dt) => {
-    frame.current.position.x = THREE.MathUtils.damp(frame.current.position.x, hover ? 0.05 : 0, 10, dt)
+    frame.current.position.z = THREE.MathUtils.damp(frame.current.position.z, lit ? 0.05 : 0, 10, dt)
   })
-  const w = 0.7
+  const w = width
   const h = w / (tex.image.width / tex.image.height)
   return (
-    <group position={[-3.96, 2.28, 0.78]} rotation-x={0.04}>
+    <group {...props}>
       <group
         ref={frame}
         onClick={(e) => {
           e.stopPropagation()
-          setState({ lightbox: certificate })
+          setState({ lightbox: cert })
         }}
         {...hoverCursor(setHover)}
       >
-        <RoundedBox args={[0.045, h + 0.12, w + 0.12]} radius={0.012} smoothness={2} castShadow receiveShadow>
-          <meshStandardMaterial color="#c9a35a" roughness={0.45} metalness={0.35} emissive="#c9a35a" emissiveIntensity={hover ? 0.25 : 0} />
+        <RoundedBox args={[w + 0.12, h + 0.12, 0.045]} radius={0.012} smoothness={2} castShadow receiveShadow>
+          <meshStandardMaterial color={color} roughness={0.45} metalness={metal} emissive={color} emissiveIntensity={lit ? 0.25 : 0} />
         </RoundedBox>
-        <mesh position={[0.024, 0, 0]} rotation-y={Math.PI / 2}>
+        <mesh position={[0, 0, 0.024]}>
           <planeGeometry args={[w + 0.06, h + 0.06]} />
           <meshStandardMaterial color="#f7f0e2" roughness={0.9} />
         </mesh>
-        <mesh position={[0.026, 0, 0]} rotation-y={Math.PI / 2}>
+        <mesh position={[0, 0, 0.026]}>
           <planeGeometry args={[w, h]} />
           <meshStandardMaterial map={tex} roughness={0.7} />
         </mesh>
         {/* award rosette pinned to the corner */}
-        <group position={[0.05, -h / 2 - 0.02, w / 2 - 0.02]} rotation-y={Math.PI / 2}>
-          {[-0.025, 0.025].map((dx, i) => (
-            <mesh key={dx} position={[dx, -0.07, -0.005]} rotation-z={i ? -0.25 : 0.25}>
-              <boxGeometry args={[0.035, 0.12, 0.004]} />
-              <meshStandardMaterial color={C.rose} roughness={0.8} />
+        {rosette && (
+          <group position={[-w / 2 + 0.02, -h / 2 - 0.02, 0.05]}>
+            {[-0.025, 0.025].map((dx, i) => (
+              <mesh key={dx} position={[dx, -0.07, -0.005]} rotation-z={i ? -0.25 : 0.25}>
+                <boxGeometry args={[0.035, 0.12, 0.004]} />
+                <meshStandardMaterial color={C.rose} roughness={0.8} />
+              </mesh>
+            ))}
+            <mesh rotation-x={Math.PI / 2}>
+              <cylinderGeometry args={[0.055, 0.055, 0.012, 16]} />
+              <meshStandardMaterial color={C.lamp} roughness={0.5} />
             </mesh>
-          ))}
-          <mesh rotation-x={Math.PI / 2}>
-            <cylinderGeometry args={[0.055, 0.055, 0.012, 16]} />
-            <meshStandardMaterial color={C.lamp} roughness={0.5} />
-          </mesh>
-          <mesh position={[0, 0, 0.007]} rotation-x={Math.PI / 2}>
-            <cylinderGeometry args={[0.032, 0.032, 0.006, 16]} />
-            <meshStandardMaterial color={C.rose} roughness={0.5} />
-          </mesh>
-        </group>
+            <mesh position={[0, 0, 0.007]} rotation-x={Math.PI / 2}>
+              <cylinderGeometry args={[0.032, 0.032, 0.006, 16]} />
+              <meshStandardMaterial color={C.rose} roughness={0.5} />
+            </mesh>
+          </group>
+        )}
       </group>
+    </group>
+  )
+}
+
+// The internship certificate hangs next to the ocean poster.
+const internCert = experience.find((job) => job.certificate)?.certificate
+
+// Course certificates lean against the wall on top of the bookshelf, left of the plant.
+// The camera has its own close-up of this spot (SHOTS.certificate in CameraRig.jsx).
+// A second certificate stands smaller, in front of the first.
+const SHELF_SLOTS = [
+  { x: -2.45, z: -3.86, w: 0.5, turn: 0.06 },
+  { x: -2.1, z: -3.66, w: 0.36, turn: -0.18 },
+]
+
+function ShelfCertificates() {
+  if (!courses.length) return null
+  return (
+    <group>
+      {/* a warm spot so the paper reads clearly at night */}
+      <ThemedLight night={0.9} day={0.25} position={[-2.3, 3.25, -3.1]} color="#ffeccc" distance={1.8} decay={1.6} />
+      {courses.slice(0, SHELF_SLOTS.length).map((cert, i) => {
+        const { x, z, w, turn } = SHELF_SLOTS[i]
+        const h = w / 1.414 + 0.12
+        return (
+          <CertificateFrame
+            key={cert.credentialId ?? cert.title}
+            cert={cert}
+            width={w}
+            color={C.woodDark}
+            metal={0}
+            glowOn={cert.skill}
+            position={[x, 2.645 + h / 2 + 0.005, z]}
+            rotation={[-0.12, turn, 0]}
+          />
+        )
+      })}
     </group>
   )
 }
@@ -912,7 +952,10 @@ export default function Room() {
       <Bookshelf />
       <Bed />
       <Poster />
-      {certificate && <CertificateFrame />}
+      {internCert && (
+        <CertificateFrame cert={internCert} rosette position={[-3.96, 2.28, 0.78]} rotation={[0.04, Math.PI / 2, 0]} />
+      )}
+      <ShelfCertificates />
       <Corkboard />
       <Door />
       <FloorBits />

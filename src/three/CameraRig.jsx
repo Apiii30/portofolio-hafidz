@@ -10,6 +10,8 @@ export const SHOTS = {
   window: { pos: [0.8, 2.62, -2.45], look: [0.8, 2.62, -5], shift: 0, close: true },
   monitor: { pos: [-0.55, 2.2, -0.2], look: [-3.5, 1.5, -1.1], shift: 0.22 },
   shelf: { pos: [-0.75, 1.9, 0.2], look: [-2.2, 1.4, -3.8], shift: 0.2 },
+  // close-up of the course certificate leaning on top of the bookshelf
+  certificate: { pos: [-1.95, 3.0, -2.3], look: [-2.45, 2.88, -3.86], shift: 0.2 },
   poster: { pos: [-0.35, 2.15, 2.55], look: [-3.97, 2.3, 1.3], shift: -0.2 },
   board: { pos: [2.75, 2.3, -1.2], look: [3.15, 2.5, -3.97], shift: -0.2 },
   door: { pos: [0.6, 2.3, 5.6], look: [-3.5, 1.6, 2.7], shift: 0.16 },

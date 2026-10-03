@@ -108,6 +108,24 @@ export const experience = [
   },
 ]
 
+// Sertifikat kursus / kelas online (yang tidak terikat ke satu pengalaman kerja).
+// Muncul sebagai kartu di section Skills dan sebagai bingkai di atas rak buku 3D.
+// `skill` harus sama dengan label chip/benda di rak — hover kartunya bikin benda itu ikut bergerak.
+export const courses = [
+  {
+    title: 'Memulai Pemrograman dengan Python',
+    issuer: 'Dicoding Indonesia',
+    issued: 'Oct 2026',
+    hours: 60,
+    skill: 'Python',
+    covers: 'Data types, control flow, OOP, PEP 8, unit testing and popular libraries.',
+    credentialId: '98XW82300PM3',
+    verifyUrl: 'https://www.dicoding.com/certificates/98XW82300PM3',
+    image: '/certificates/dicoding-python.jpg',
+    thumb: '/certificates/dicoding-python-sm.jpg',
+  },
+]
+
 // Karya desain / editing. Section "Design" (dan menunya di nav) baru muncul kalau array ini terisi.
 // Contoh: { title: 'Poster HIMAMI', kind: 'Poster', image: '/works/poster-himami.jpg' }
 export const works = []

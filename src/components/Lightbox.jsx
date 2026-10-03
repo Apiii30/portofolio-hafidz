@@ -43,9 +43,15 @@ export default function Lightbox() {
               <span className="block font-display text-xl">{item.title}</span>
               <span className="font-mono text-xs tracking-wider text-cream/70 uppercase">
                 {item.issuer} · {item.issued}
+                {item.credentialId && ` · ID ${item.credentialId}`}
               </span>
             </span>
             <span className="flex items-center gap-3 font-mono text-xs uppercase">
+              {item.verifyUrl && (
+                <a href={item.verifyUrl} target="_blank" rel="noreferrer" className="text-lamp underline-offset-4 hover:underline">
+                  Verify ↗
+                </a>
+              )}
               <a href={item.image} target="_blank" rel="noreferrer" className="text-lamp underline-offset-4 hover:underline">
                 Full size ↗
               </a>

@@ -20,6 +20,7 @@ Semua teks ada di **`src/data/profile.js`**. Cari tanda `TODO`:
 | Pengalaman | Isi `period` dan `points` di `experience` |
 | Karya desain | Taruh gambar di `public/works/`, lalu isi array `works`. Section Design dan menunya di nav otomatis muncul begitu array ini terisi |
 | Sertifikat | Taruh gambar di `public/certificates/`, lalu tambahkan `certificate` di item `experience` yang sesuai. Otomatis muncul sebagai kartu di Experience dan sebagai bingkai di dinding kamar 3D |
+| Sertifikat kursus | Taruh gambar di `public/certificates/`, lalu tambahkan item ke array `courses` (isi `skill` dengan label yang ada di rak, mis. `Python`). Otomatis muncul sebagai kartu di Skills dan sebagai bingkai di atas rak buku 3D |
 | CV | Timpa `public/Hafidz-Asmar-Meisanda-CV.pdf` dengan versi baru (nama file sama) |
 | Skill baru | Tambahkan ke `skillGroups`. Untuk rak 3D: buku ke `bookshelfRows`, bahasa lain ke `shelfLanguages` (jadi pajangan), tools ke `toolbox` (jadi stiker di kotak perkakas) |
 
