@@ -18,7 +18,7 @@ export default function Projects() {
         .
       </h2>
       <p className="mt-4 max-w-md text-fg/70" data-reveal>
-        A few things from my GitHub — class projects, side projects, and stuff I made just to see if I could.
+        A few things I've shipped — a business of my own, side projects, and stuff I made just to see if I could.
       </p>
 
       <ol className="mt-10 space-y-5">

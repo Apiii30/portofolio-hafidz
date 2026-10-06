@@ -29,6 +29,16 @@ export const socials = [
 // `repo` hanya untuk repo PUBLIK — repo privat bikin pengunjung kena 404, jadi isi null.
 export const projects = [
   {
+    title: 'Webkeun',
+    year: '2026',
+    highlight: 'my own business',
+    blurb:
+      'My own small web studio, just getting started. I build sites for UMKM, company profiles and personal portfolios — domain, hosting and basic SEO included, done in 3–7 days. First clients: a coffee shop and a logistics company.',
+    tags: ['Next.js', 'SEO', 'Freelance'],
+    live: 'https://webkeun.id',
+    repo: null,
+  },
+  {
     title: 'Wedding Invitation',
     year: '2026',
     blurb:
