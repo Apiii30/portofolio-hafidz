@@ -33,7 +33,7 @@ export const projects = [
     year: '2026',
     highlight: 'my own business',
     blurb:
-      'My own small web studio, just getting started. I build sites for UMKM, company profiles and personal portfolios — domain, hosting and basic SEO included, done in 3–7 days. First clients: a coffee shop and a logistics company.',
+      'My own small web studio, just getting started. I build sites for UMKM, company profiles, personal portfolios and digital wedding invitations — domain, hosting and basic SEO included, done in 3–7 days. First clients: a coffee shop and a logistics company. The wedding invitation below was a Webkeun job too.',
     tags: ['Next.js', 'SEO', 'Freelance'],
     live: 'https://webkeun.id',
     repo: null,
@@ -46,16 +46,6 @@ export const projects = [
     tags: ['Next.js', 'TypeScript', 'Tailwind', 'Supabase'],
     live: 'https://the-wedding-of-frisca-arif.vercel.app',
     repo: 'https://github.com/Apiii30/wedding-invitation',
-  },
-  {
-    title: 'PrakVote',
-    year: '2025',
-    highlight: 'used in a real election',
-    blurb:
-      "The voting app for our campus BEM chairperson election. Candidate pages, one vote per device, and a live results board — all on Firebase. The first version ran on Express + Vercel KV.",
-    tags: ['JavaScript', 'Firebase', 'Vercel'],
-    live: 'https://voting-web-xi.vercel.app',
-    repo: 'https://github.com/Apiii30/voting-web',
   },
 ]
 
